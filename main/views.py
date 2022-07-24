@@ -1,6 +1,6 @@
 from django.shortcuts import render , redirect
 from .forms import PostForm, RegisterForm
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required , permission_required
 from django.contrib.auth import login , logout , authenticate
 from . models import Post
 
@@ -9,9 +9,12 @@ from . models import Post
 def home(requests):
     posts = Post.objects.all()
 
-    if requests.method == "DELETE":
-        post_id = requests.DELETE.get("post-id")
-        print(post_id)
+    if requests.method == "POST":
+        post_id = requests.POST.get("post-id")
+        post = Post.objects.filter(id=post_id).first()
+        if post and post.author == (requests.user or requests.user.has_perms("main.delete_post")):
+            post.delete()
+        # print(post_id)
     return render(requests, 'main/home.html', {"posts":posts})
 
 

@@ -11,13 +11,14 @@
             <h5 class="card-title">{{post.title}}</h5>
             <p>{{post.description}}</p>
         </div>
-        {% if user == post.author %}
         <div>
-            
-                <form method="DELETE">
+            {% if user == post.author or perms.main.delete_post %}
+
+                <form method="POST">
                     {% csrf_token %}
                     <button type="submit" class="btn btn-danger" name="post-id" value="{{post.id}}">Delete</button>
                 </form>
+                
             {% endif %}
         </div>
     </div>
