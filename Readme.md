@@ -5,8 +5,9 @@
 #### * Only writes can sign-up / login and publish their blog.
 #### * Everyone can view everyones writing.
 #### * Users can Delete only theier own writings.
+#### * Admin Can Delete any post
 
 # 
 ### Future Implementaions
-#### * Add Admin who can monitor all the Users .
-#### * Admin Can Delete any post and Ban any Users from publising.
+#### * Admin Can Ban any Users from publising.
+#### * Enhance UI
